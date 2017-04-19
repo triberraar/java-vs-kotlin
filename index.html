@@ -26,17 +26,201 @@
 			<div class="slides">
 				<section>
 					<div>
+						<h2>Walks like java, talks like java but not quite java</h2>
 						<img data-src="images/kotlin.png" width="250" height="250" style="vertical-align:middle">
-						<span style="padding-right: 15px;padding-left: 15px">VS</span>
-						<img data-src="images/java.png" width="250" height="250" style="vertical-align:middle">
 					</div>
 					<aside class="notes">
 							some notes and stuff
 					</aside>
 				</section>
 
-				<section data-transition="convex">
-					Slide 2
+				<section>
+					<ul>
+						<li>Made by JetBrains</li>
+						<li>Compiles to JVM bytecode or Javascript or native</li>
+						<li>100% compatible with Java</li>
+						<li>Supported in Spring Framework and Spring Boot</li>
+						<li>Great tooling support</li>
+						<li>Automatic covert Java to Kotlin</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Features</h3>
+					<section>Type inference (also smart casting)
+						<div>
+						<pre> <code data-trim data-noescape class="kotlin" >
+							val name: "name" // knows it is a string
+							name = 1 // error: integer is not a string
+							
+							var test: Any? = null;
+							if (test is String) {
+								test.length // knows test here is string
+							}
+							</code></pre>
+						</div>
+					</section>
+					<section>
+						Null safety
+						<div>
+						<pre> <code data-trim data-noescape class="kotlin" >
+							var notNullable: String = "abc"
+							notNullable = null // error: non-null type String
+							var nullable: String ? = "abc"
+							var nullable = null // ok
+
+							nullable.length // error: nullable can be null
+							nullable?.length // null null else length
+							nullable?.length ?: -1 // elvis: -1 if null else length
+							if(nullable != null) { 
+								nullable.length 
+							} // smart enough to know nullable can not be null
+							</code></pre>
+						</div>
+					</section>
+					<section> 
+						Immutability
+						<div>
+						<pre> <code data-trim data-noescape class="kotlin" >
+							val immutable = "abc";
+							immutable = "d" // error: val cannot be unassigned
+
+							class Test{ }
+							class OpenTest{ }
+							class Other: Test() { } // error: Test is final
+							class Other: OpenTest() { } // ok
+
+							val readOnly = listOf(1, 2, 3)
+							readOnly.add(2) // no add method
+							val mutableList = mutableListOf(1, 2, 3)
+							mutableList.add(2) // ok
+							</code></pre>
+						</div>
+					</section>
+					<section>String interpolation
+					<div>
+						<pre> <code data-trim data-noescape class="kotlin" >
+							val name = "name"
+							println("Name $name")
+							</code></pre>
+						</div>
+					</section>
+					<section>Data classes
+						<div>
+						<pre> <code data-trim data-noescape class="kotlin" >
+							data class User(val name: String, val age: Int)
+							// generates equals/hashcode
+							// generates toString and copy
+							</code></pre>
+						</div>
+						<ul>
+							<li>Great for DTO's</li>
+							<li>Great for Value Objects</li>
+						</ul>
+					</section>
+					<section>Lambda's
+						<div>
+						<pre> <code data-trim data-noescape class="kotlin" >
+							val items = ArrayList&ltString>()
+							items.sortBy { it.length() } // implicit name of parameter
+							items.filter { it.length == 5 }.sortBy { it }
+							map.forEach { _, value -> println("$value!") }
+							
+							fun &ltT> max(collection: Collection&ltT>, 
+								less: (T, T) -> Boolean): T?
+								// function as a prameter
+							</code></pre>
+						</div>
+					</section>
+					<section>Extension functions
+						<div>
+						<pre> <code data-trim data-noescape class="kotlin" >
+							fun String.doSomething() = "--- $this ---"
+							// extends String with doSomething function
+							
+							val name = "name"
+							name.doSomething() // can call it now
+							</code></pre>
+						</div>
+					</section>
+					<section>==
+						<div>
+						<pre> <code data-trim data-noescape class="kotlin" >
+							"name" == "name" // is finally true
+
+							data class Test(val name: String)
+							Test("a") == Test("a") // is also true
+							Test("a") === Test("a") // not true
+							</code></pre>
+						</div>
+					</section>
+					<section>Function parameters(named, default, infix)
+						<div>
+						<pre> <code data-trim data-noescape class="kotlin" >
+							fun named(a: String, b: String) {}
+							named(b = "b", a = "a")
+							named("a", "b")
+
+							fun default(a: String = "a", b: String){ }
+							default(b = "b")
+							default("a", "b")
+
+							infix fun Int.infixf(x: Int): String {
+								return "string"
+							}
+							1 infixf 2
+
+							fun test() = "result"
+							// No need for a body and return and all that
+							</code></pre>
+						</div>
+						</section> 
+					<section>Pattern matching
+					<div>
+						<pre> <code data-trim data-noescape class="kotlin" >
+							fun match1(obj: Any) {
+								when (obj) {
+									is String -> println("String")
+									else -> println("other")
+								}
+							}
+							
+							fun match2(number: Int) {
+								when (number) {
+									1 -> println("1")
+									2 -> println("2")
+								}
+							}
+
+							data class Person(val name: String, val age: Int)
+							fun match3(person: Person) {
+								when {
+									person.name == "me" -> println("me")
+									person.age > 30 -> println("old")
+								}
+							}
+							</code></pre>
+						</div>
+					</section>
+					<section>Other goodies
+						<div>
+						<ul>
+							<li>Destructuring</li>
+							<li>Ranges</li>
+							<li>Operator overloading</li>
+							<li>Builders</li>
+							<li>invoke (similar to apply() in scala)</li>
+							<li>Companion objects</li>
+						</ul>
+						</div>
+					</section>
+				</section>
+
+				<section>
+					<h3>How it can make our lives easier</h3>
+					<section>Protobuf</section>
+					<section>Spring</section>
+					<section>Testing</section>
 				</section>
 			</div>
 		</div>
