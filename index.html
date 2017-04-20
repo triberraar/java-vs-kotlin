@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="css/theme/black.css">
 
 		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="lib/css/idea.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -49,7 +49,7 @@
 					<h3>Features</h3>
 					<section>Type inference (also smart casting)
 						<div>
-						<pre> <code data-trim data-noescape class="kotlin" >
+						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							val name: "name" // knows it is a string
 							name = 1 // error: integer is not a string
 							
@@ -63,7 +63,7 @@
 					<section>
 						Null safety
 						<div>
-						<pre> <code data-trim data-noescape class="kotlin" >
+						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							var notNullable: String = "abc"
 							notNullable = null // error: non-null type String
 							var nullable: String ? = "abc"
@@ -81,7 +81,7 @@
 					<section> 
 						Immutability
 						<div>
-						<pre> <code data-trim data-noescape class="kotlin" >
+						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							val immutable = "abc";
 							immutable = "d" // error: val cannot be unassigned
 
@@ -99,7 +99,7 @@
 					</section>
 					<section>String interpolation
 					<div>
-						<pre> <code data-trim data-noescape class="kotlin" >
+						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							val name = "name"
 							println("Name $name")
 							</code></pre>
@@ -107,7 +107,7 @@
 					</section>
 					<section>Data classes
 						<div>
-						<pre> <code data-trim data-noescape class="kotlin" >
+						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							data class User(val name: String, val age: Int)
 							// generates equals/hashcode
 							// generates toString and copy
@@ -120,7 +120,7 @@
 					</section>
 					<section>Lambda's
 						<div>
-						<pre> <code data-trim data-noescape class="kotlin" >
+						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							val items = ArrayList&ltString>()
 							items.sortBy { it.length() } // implicit name of parameter
 							items.filter { it.length == 5 }.sortBy { it }
@@ -134,7 +134,7 @@
 					</section>
 					<section>Extension functions
 						<div>
-						<pre> <code data-trim data-noescape class="kotlin" >
+						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							fun String.doSomething() = "--- $this ---"
 							// extends String with doSomething function
 							
@@ -145,7 +145,7 @@
 					</section>
 					<section>==
 						<div>
-						<pre> <code data-trim data-noescape class="kotlin" >
+						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							"name" == "name" // is finally true
 
 							data class Test(val name: String)
@@ -156,7 +156,7 @@
 					</section>
 					<section>Function parameters(named, default, infix)
 						<div>
-						<pre> <code data-trim data-noescape class="kotlin" >
+						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							fun named(a: String, b: String) {}
 							named(b = "b", a = "a")
 							named("a", "b")
@@ -177,7 +177,7 @@
 						</section> 
 					<section>Pattern matching
 					<div>
-						<pre> <code data-trim data-noescape class="kotlin" >
+						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							fun match1(obj: Any) {
 								when (obj) {
 									is String -> println("String")
