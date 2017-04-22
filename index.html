@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="css/theme/black.css">
 
 		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/idea.css">
+		<link rel="stylesheet" href="lib/css/zenburn.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -47,7 +47,7 @@
 
 				<section>
 					<h3>Features</h3>
-					<section>Type inference (also smart casting)
+					<section><h4>Type inference (also smart casting)</h4>
 						<div>
 						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							val name: "name" // knows it is a string
@@ -61,7 +61,7 @@
 						</div>
 					</section>
 					<section>
-						Null safety
+						<h4>Null safety</h4>
 						<div>
 						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							var notNullable: String = "abc"
@@ -79,7 +79,7 @@
 						</div>
 					</section>
 					<section> 
-						Immutability
+						<h4>Immutability</h4>
 						<div>
 						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							val immutable = "abc";
@@ -97,7 +97,7 @@
 							</code></pre>
 						</div>
 					</section>
-					<section>String interpolation
+					<section><h4>String interpolation</h4>
 					<div>
 						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							val name = "name"
@@ -105,7 +105,7 @@
 							</code></pre>
 						</div>
 					</section>
-					<section>Data classes
+					<section><h4>Data classes</h4>
 						<div>
 						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							data class User(val name: String, val age: Int)
@@ -118,7 +118,7 @@
 							<li>Great for Value Objects</li>
 						</ul>
 					</section>
-					<section>Lambda's
+					<section><h4>Lambda's</h4>
 						<div>
 						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							val items = ArrayList&ltString>()
@@ -132,7 +132,7 @@
 							</code></pre>
 						</div>
 					</section>
-					<section>Extension functions
+					<section><h4>Extension functions</h4>
 						<div>
 						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							fun String.doSomething() = "--- $this ---"
@@ -143,7 +143,7 @@
 							</code></pre>
 						</div>
 					</section>
-					<section>==
+					<section><h4>==</h4>
 						<div>
 						<pre> <code data-trim data-noescape class="kotlin stretch"
 						 >
@@ -155,7 +155,7 @@
 							</code></pre>
 						</div>
 					</section>
-					<section>Function parameters(named, default, infix)
+					<section><h4>Function parameters(named, default, infix)</h4>
 						<div>
 						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							fun named(a: String, b: String) {}
@@ -176,7 +176,7 @@
 							</code></pre>
 						</div>
 						</section> 
-					<section>Pattern matching
+					<section><h4>Pattern matching</h4>
 					<div>
 						<pre> <code data-trim data-noescape class="kotlin stretch" >
 							fun match1(obj: Any) {
@@ -203,7 +203,7 @@
 							</code></pre>
 						</div>
 					</section>
-					<section>Other goodies
+					<section><h4>Other goodies</h4>
 						<div>
 						<ul>
 							<li>Destructuring</li>
@@ -219,9 +219,77 @@
 
 				<section>
 					<h3>How it can make our lives easier</h3>
-					<section>Protobuf</section>
-					<section>Spring</section>
-					<section>Testing</section>
+					<section><h4>Protobuf</h4>
+						KBuilders
+						<pre> <code data-trim data-noescape class="kotlin stretch" >
+							var dto = buildDTO {
+								playerUid = "123"
+								timestamp = LocalDateTime.now()
+							}
+
+							var modifiedDTO = dto.rebuild {
+								playerUid = "456"
+							}
+							</code></pre>
+					</section>
+					<section><h4>Spring - Bean creation</h4>
+					
+					<pre> <code data-trim data-noescape class="kotlin stretch" >
+						@Bean
+						open fun someBean() = SomeBean()
+						</code></pre>
+					</section>
+					<section><h4>Spring - Boot application</h4>
+					<pre> <code data-trim data-noescape class="kotlin stretch" >
+						@SpringBootApplication
+						class Application
+						
+						fun main(args: Array<String>) { // no need to have this in a class
+							SpringApplication.run(Application::class.java, *args)
+						}
+						</code></pre>
+					</section>
+					<section><h4>Spring - DTO's/entities</h4>
+					<pre> <code data-trim data-noescape class="kotlin stretch" >
+						// can all be defined in a single file to have better overview
+						data class Player(val name: String, val age: Int)
+						data class Game(val name: String
+
+						@Entity
+						data class Player(
+							@Id
+							@GeneratedValue
+							val id: Int = 0,
+							val name: String = "")
+						</code></pre>
+					</section>
+					<section><h4>Testing</h4>
+					<pre> <code data-trim data-noescape class="kotlin stretch" >
+						@Test
+						fun `test with spaces`() { } // more discriptive names
+
+						// Using Spek (also tests java code)
+						class SimpleTest : Spek({
+							describe("a specification") {
+								
+								it("should do something") {
+								}
+								
+								it("should do something else") {
+								}
+							}
+
+							describe("bit more special") {
+								listOf(1, 2, 3).forEach { number -> 
+									it("assert something") {
+										assertThat(number).isGreatThan(0)
+									}
+								}
+							}
+						})
+
+						</code></pre>
+					</section>
 				</section>
 			</div>
 		</div>
