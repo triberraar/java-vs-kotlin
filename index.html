@@ -263,6 +263,27 @@
 							val name: String = "")
 						</code></pre>
 					</section>
+					<section><h4>Spring - Pitfalls</h4>
+						<ul>
+							<li>
+								Spring doesn't like final on some classes/methods (for proxy reasons). There are maven/gradle plugins that make certain Spring classes open
+							</li>
+							<li>
+								Annotations with array attributes must use arrayOf
+							</li>
+							<li>
+								Field injection: field needs to be lateinit
+								<pre> <code data-trim data-noescape class="kotlin stretch" >
+									@Autowired
+									lateinit var field:Repository
+									</code></pre>
+								But better to use constructor injection
+								<pre> <code data-trim data-noescape class="kotlin stretch" >
+									class Service(val field: Repositry) // no need for @Autowired in Spring 4
+									</code></pre>
+							</li>
+						</ul>
+					</section>
 					<section><h4>Testing</h4>
 					<pre> <code data-trim data-noescape class="kotlin stretch" >
 						@Test
